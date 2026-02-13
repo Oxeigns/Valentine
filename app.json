@@ -1,0 +1,19 @@
+{
+  "name": "Telegram Love Game Engine",
+  "description": "Cinematic Multi-Mode Telegram Love Game with Proposals, Crush & Prank",
+  "keywords": ["telegram", "love", "game", "proposal", "crush", "prank"],
+  "env": {
+    "API_ID": {
+      "description": "Telegram API ID from my.telegram.org",
+      "required": true
+    },
+    "API_HASH": {
+      "description": "Telegram API HASH from my.telegram.org",
+      "required": true
+    },
+    "BOT_TOKEN": {
+      "description": "Bot token from @BotFather",
+      "required": true
+    }
+  }
+}
