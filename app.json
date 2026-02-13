@@ -1,7 +1,30 @@
 {
   "name": "Telegram Love Game Engine",
   "description": "Cinematic Multi-Mode Telegram Love Game with Proposals, Crush & Prank",
-  "keywords": ["telegram", "love", "game", "proposal", "crush", "prank"],
+  "repository": "https://github.com/yourusername/love-game-engine",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg",
+  "keywords": [
+    "telegram",
+    "bot",
+    "love",
+    "game",
+    "pyrogram",
+    "proposal",
+    "crush",
+    "prank"
+  ],
+  "stack": "heroku-22",
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
   "env": {
     "API_ID": {
       "description": "Telegram API ID from my.telegram.org",
