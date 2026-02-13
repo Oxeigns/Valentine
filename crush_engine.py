@@ -140,3 +140,5 @@ class CrushEngine:
             await callback.message.edit_text(crush_secret_kept())
             await self.sessions.end_session(group_id, session_id)
             await callback.answer("Secret kept 🔒")
+        else:
+            await callback.answer("Yeh action ab allow nahi hai.", show_alert=True)
