@@ -46,7 +46,8 @@ Otherwise the deploy button will fail.
 /prank       - Fake proposal prank (reply required)  
 /breakup     - End your love story  
 /loveboard   - View rankings  
-/help        - Help menu  
+/help        - Help menu
+/vibe        - Random Valentine vibe drop  
 
 ---
 

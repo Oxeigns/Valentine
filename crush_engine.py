@@ -35,7 +35,7 @@ class CrushEngine:
     async def start(self, message: Message):
 
         if not message.reply_to_message:
-            await message.reply("Reply to your crush 😏")
+            await message.reply("Reply to your crush aur phir /crush se secret drop karo 😏")
             return
 
         group_id = message.chat.id
@@ -96,8 +96,7 @@ class CrushEngine:
             await callback.answer()
 
             await callback.message.edit_text(
-                "The admirer must decide...\n\n"
-                "Should the identity be revealed?",
+                "The admirer must decide...\n\nIdentity reveal kare ya suspense chalne de?",
                 reply_markup=crush_reveal_decision(session_id)
             )
 
@@ -107,7 +106,7 @@ class CrushEngine:
 
         elif action == "ignore" and user_id == session["target_id"]:
 
-            await callback.answer("Secret ignored 🙈")
+            await callback.answer("Ignored. Mystery survived 🙈")
             await callback.message.delete()
             await self.sessions.end_session(group_id, session_id)
 
@@ -129,7 +128,7 @@ class CrushEngine:
             )
 
             await self.sessions.end_session(group_id, session_id)
-            await callback.answer("Identity revealed 💫")
+            await callback.answer("Identity revealed. Scene complete 💫")
 
         # --------------------------------------------------
         # PROPOSER KEEPS SECRET
@@ -139,6 +138,6 @@ class CrushEngine:
 
             await callback.message.edit_text(crush_secret_kept())
             await self.sessions.end_session(group_id, session_id)
-            await callback.answer("Secret kept 🔒")
+            await callback.answer("Secret locked. Vibe maintained 🔒")
         else:
             await callback.answer("Yeh action ab allow nahi hai.", show_alert=True)

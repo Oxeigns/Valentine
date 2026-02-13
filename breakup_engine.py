@@ -41,7 +41,7 @@ class BreakupEngine:
         partner_id = couples.get(str(user.id))
 
         if not partner_id:
-            await message.reply("💔 You are not in a registered love story.")
+            await message.reply("💔 Tum currently kisi registered love story me nahi ho.")
             return
 
         try:
@@ -60,7 +60,7 @@ class BreakupEngine:
         await message.reply(
             f"{mention(user.id, user.first_name)} wants to end the love story with "
             f"{mention(partner.id, partner.first_name)}…\n\n"
-            "Is this truly the end?",
+            "Kya yahi the end hai, ya last chance bacha hai?",
             reply_markup=breakup_confirm(session["session_id"]),
             disable_web_page_preview=True
         )
@@ -98,7 +98,7 @@ class BreakupEngine:
 
         if action == "confirm":
 
-            await callback.answer("Processing... 💔")
+            await callback.answer("Processing heartbreak... 💔")
 
             await cinematic_delay(2)
 
@@ -123,8 +123,8 @@ class BreakupEngine:
 
         elif action == "cancel":
 
-            await callback.answer("Breakup cancelled 🥺")
-            await callback.message.edit_text("💞 Love story continues.")
+            await callback.answer("Breakup cancelled. Pyaar wins 🥺")
+            await callback.message.edit_text("💞 Love story continues. Audience emotional ho gayi.")
             await self.sessions.end_session(group_id, session_id)
         else:
             await callback.answer("Yeh option valid nahi hai.", show_alert=True)

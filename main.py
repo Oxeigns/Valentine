@@ -13,6 +13,7 @@ from leaderboard import Leaderboard
 from prank_engine import PrankEngine
 from proposal_engine import ProposalEngine
 from session_manager import SessionManager
+from utils import help_text, random_vibe, welcome_text
 
 
 # --------------------------------------------------
@@ -73,6 +74,7 @@ SUPPORTED_COMMANDS = [
     "breakup",
     "loveboard",
     "help",
+    "vibe",
 ]
 
 BOT_USERNAME: Optional[str] = None
@@ -133,11 +135,7 @@ async def command_router(client: Client, message: Message):
         )
 
         if command == "love":
-            await message.reply(
-                "💖 **Welcome to the Love Game Engine**\n\n"
-                "Choose your destiny below.",
-                reply_markup=main_menu(),
-            )
+            await message.reply(welcome_text(), reply_markup=main_menu())
             return
 
         if command == "propose":
@@ -162,18 +160,11 @@ async def command_router(client: Client, message: Message):
             return
 
         if command == "help":
-            await message.reply(
-                "📖 **Love Game Help**\n\n"
-                "/love – Open menu\n"
-                "/propose – Real proposal (reply required)\n"
-                "/crush – Anonymous crush (reply required)\n"
-                "/prank – Fake proposal prank (reply required)\n"
-                "/breakup – End your love story\n"
-                "/loveboard – View rankings\n\n"
-                "Each love story runs separately.\n"
-                "Sessions expire after 5 minutes.\n"
-                "Cooldown: 20 seconds per mode."
-            )
+            await message.reply(help_text())
+            return
+
+        if command == "vibe":
+            await message.reply(random_vibe())
 
     except Exception as exc:
         logger.exception("Command handler error: %s", exc)
@@ -204,7 +195,8 @@ async def callback_router(client: Client, callback: CallbackQuery):
                     "Reply to someone before starting a mode.\n"
                     "Each love story runs separately.\n"
                     "Sessions expire after 5 minutes.\n"
-                    "Cooldown: 20 seconds per mode."
+                    "Cooldown: 20 seconds per mode.\n\n"
+                    "Bonus: /vibe se instant Valentine energy drop karo."
                 )
                 return
 
