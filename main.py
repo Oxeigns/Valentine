@@ -228,14 +228,18 @@ async def callback_router(client: Client, callback: CallbackQuery):
 
 async def main():
     logger.info("Starting Love Game Engine...")
+    await app.start()
     await session_manager.start()
 
-    global BOT_USERNAME
-    me = await app.get_me()
-    BOT_USERNAME = (me.username or "").lower()
+    try:
+        global BOT_USERNAME
+        me = await app.get_me()
+        BOT_USERNAME = (me.username or "").lower()
 
-    logger.info("Love Game Engine is LIVE ❤️")
-    await idle()
+        logger.info("Love Game Engine is LIVE ❤️")
+        await idle()
+    finally:
+        await app.stop()
 
 
 # --------------------------------------------------
