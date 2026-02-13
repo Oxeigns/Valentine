@@ -35,7 +35,7 @@ class PrankEngine:
     async def start(self, message: Message):
 
         if not message.reply_to_message:
-            await message.reply("Reply to someone to prank 😈")
+            await message.reply("Reply target select karo aur /prank se scene shuru karo 😈")
             return
 
         group_id = message.chat.id
@@ -104,7 +104,7 @@ class PrankEngine:
             )
 
             await self.sessions.end_session(group_id, session_id)
-            await callback.answer("Gotcha 😏")
+            await callback.answer("Gotcha. Oscar-level acting 😏")
 
         # --------------------------------------------------
         # TARGET PRESSES 'IT'S A PRANK'
@@ -113,11 +113,10 @@ class PrankEngine:
         elif action == "prank_reveal" and user_id == session["target_id"]:
 
             await callback.message.edit_text(
-                "😂 You can’t prank the prank master.\n\n"
-                "Respect earned.",
+                "😂 You can’t prank the prank master.\n\nRespect earned. Aura +100.",
             )
 
             await self.sessions.end_session(group_id, session_id)
-            await callback.answer("Savage move 😎")
+            await callback.answer("Savage move. Crowd cheering 😎")
         else:
             await callback.answer("Yeh prank button ab kaam ka nahi raha.", show_alert=True)
