@@ -2,6 +2,7 @@ import logging
 from typing import Optional
 
 from pyrogram import Client, filters, idle
+from pyrogram.enums import ChatType
 from pyrogram.types import CallbackQuery, Message
 
 from breakup_engine import BreakupEngine
@@ -107,6 +108,11 @@ async def _resolve_command(message: Message) -> Optional[str]:
     return command
 
 
+def _is_group_chat(message: Message) -> bool:
+    chat_type = message.chat.type
+    return chat_type in {ChatType.GROUP, ChatType.SUPERGROUP}
+
+
 @app.on_message(filters.command(SUPPORTED_COMMANDS, prefixes=["/"]))
 async def command_router(client: Client, message: Message):
     try:
@@ -114,7 +120,7 @@ async def command_router(client: Client, message: Message):
         if not command:
             return
 
-        if message.chat.type not in {"group", "supergroup"}:
+        if not _is_group_chat(message):
             await message.reply("This bot works in groups and supergroups only 💞")
             return
 
