@@ -39,7 +39,7 @@ class ProposalEngine:
     async def start(self, message: Message):
 
         if not message.reply_to_message:
-            await message.reply("Reply to someone to propose 💘")
+            await message.reply("Kisi ke message par reply karke /propose maro, tabhi cinematic entry hogi 💘")
             return
 
         group_id = message.chat.id
@@ -62,7 +62,7 @@ class ProposalEngine:
         await message.reply(
             f"{build_up}\n\n"
             f"{mention(proposer.id, proposer.first_name)} "
-            f"is about to confess something…",
+            f"is about to confess something filmy…",
             reply_markup=proposal_start(session["session_id"]),
             disable_web_page_preview=True
         )
@@ -103,7 +103,8 @@ class ProposalEngine:
 
             await callback.message.edit_text(
                 f"{mention(session['target_id'], 'You')}...\n\n"
-                "Someone has feelings for you. ❤️",
+                "Someone has feelings for you. ❤️\n\n"
+                "Scene tumhare haath me hai.",
                 reply_markup=proposal_response(session_id),
                 disable_web_page_preview=True
             )
@@ -134,7 +135,7 @@ class ProposalEngine:
             await self.leaderboard.add_proposal(group_id, proposer.id)
 
             await self.sessions.end_session(group_id, session_id)
-            await callback.answer("Love accepted 💞")
+            await callback.answer("Proposal accepted. Couple goals unlocked 💞")
 
         # --------------------------------------------------
         # REJECT
@@ -152,10 +153,10 @@ class ProposalEngine:
                     "The love story ends here."
                 )
                 await self.sessions.end_session(group_id, session_id)
-                await callback.answer("Love story ended.")
+                await callback.answer("Love story ended. Next chapter soon.")
                 return
 
-            await callback.answer("Ouch 💔")
+            await callback.answer("Ouch. Dil pe lagi 💔")
 
             await callback.message.edit_text(
                 proposal_rejection(),
