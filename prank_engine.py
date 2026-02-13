@@ -119,3 +119,5 @@ class PrankEngine:
 
             await self.sessions.end_session(group_id, session_id)
             await callback.answer("Savage move 😎")
+        else:
+            await callback.answer("Yeh prank button ab kaam ka nahi raha.", show_alert=True)

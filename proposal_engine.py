@@ -183,3 +183,5 @@ class ProposalEngine:
                 f"Hint: Their name starts with '{proposer.first_name[0]}' 😉",
                 show_alert=True
             )
+        else:
+            await callback.answer("Yeh button ab valid nahi hai.", show_alert=True)

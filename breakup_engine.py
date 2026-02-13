@@ -126,3 +126,5 @@ class BreakupEngine:
             await callback.answer("Breakup cancelled 🥺")
             await callback.message.edit_text("💞 Love story continues.")
             await self.sessions.end_session(group_id, session_id)
+        else:
+            await callback.answer("Yeh option valid nahi hai.", show_alert=True)

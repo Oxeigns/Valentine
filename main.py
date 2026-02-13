@@ -208,6 +208,18 @@ async def callback_router(client: Client, callback: CallbackQuery):
                 )
                 return
 
+            if action in {"proposal", "crush", "prank"}:
+                await callback.answer(
+                    "Is mode ko chalane ke liye kisi message par reply karke command use karo: "
+                    f"/{'propose' if action == 'proposal' else action}",
+                    show_alert=True,
+                )
+                return
+
+            if action == "breakup":
+                await callback.answer("Breakup mode start karne ke liye /breakup command use karo.", show_alert=True)
+                return
+
             await callback.answer()
             return
 
