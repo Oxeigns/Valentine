@@ -14,12 +14,23 @@ class SessionManager:
         self.sessions = defaultdict(dict)
         self.cooldowns = defaultdict(dict)
         self._cleanup_running = False
+        self._cleanup_handle = None
 
     async def start(self):
         """Start background cleanup task."""
         if not self._cleanup_running:
             self._cleanup_running = True
-            asyncio.create_task(self._cleanup_task())
+            self._cleanup_handle = asyncio.create_task(self._cleanup_task())
+
+    async def stop(self):
+        if self._cleanup_handle is not None:
+            self._cleanup_handle.cancel()
+            try:
+                await self._cleanup_handle
+            except asyncio.CancelledError:
+                pass
+            self._cleanup_handle = None
+        self._cleanup_running = False
 
     async def _cleanup_task(self):
         while True:
