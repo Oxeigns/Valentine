@@ -249,6 +249,7 @@ async def main():
         logger.info("Love Game Engine is LIVE ❤️")
         await idle()
     finally:
+        await session_manager.stop()
         await app.stop()
 
 
